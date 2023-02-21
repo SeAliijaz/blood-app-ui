@@ -3,7 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class AppColors {
   static const Color primaryColor = Colors.red;
-  static Color secondaryColor = Colors.red.shade50;
+  static Color secondaryColor = const Color.fromRGBO(255, 235, 238, 1);
   // static const primaryColor = Color(0xFFFFC107);
   // static const secondaryColor = Color(0xFF242430);
   // static const darkColor = Color(0xFF191923);
