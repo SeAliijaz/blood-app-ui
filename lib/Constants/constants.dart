@@ -19,9 +19,15 @@ void showMessage(String msg) {
 ///Snackbar
 void showSnackBar(BuildContext context, String? text) {
   final snackBar = SnackBar(
-    content: Text(text ?? "Your Text Here"),
+    content: Text(
+      text ?? "Your Text Here",
+      style: TextStyle(
+        color: AppColors.primaryColor,
+      ),
+    ),
     action: SnackBarAction(
       label: 'Dismiss',
+      textColor: AppColors.primaryColor,
       onPressed: () {},
     ),
   );

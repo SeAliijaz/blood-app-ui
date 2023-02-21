@@ -1,8 +1,6 @@
 import 'package:blood_app_ui/Constants/constants.dart';
-import 'package:blood_app_ui/Constants/svg_icons.dart';
-import 'package:blood_app_ui/Credientals-Screens/login_screen.dart';
-import 'package:blood_app_ui/Credientals-Screens/signup_screen.dart';
 import 'package:blood_app_ui/Initial-Screen/splash_screen.dart';
+import 'package:blood_app_ui/Screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -38,7 +36,7 @@ class MyApp extends StatelessWidget {
       ),
 
       ///Home
-      home: SignUpScreen(),
+      home: HomeScreen(),
     );
   }
 }

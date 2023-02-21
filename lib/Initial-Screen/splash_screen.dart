@@ -1,7 +1,5 @@
-import 'dart:async';
-
 import 'package:blood_app_ui/Constants/constants.dart';
-import 'package:blood_app_ui/Initial-Screen/intro_screen.dart';
+import 'package:blood_app_ui/Credientals-Screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -15,24 +13,6 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  Timer? timer;
-
-  @override
-  void initState() {
-    timer = Timer.periodic(Duration(seconds: 3), (timer) async {
-      await Navigator.push(context, MaterialPageRoute(builder: (_) {
-        return IntroScreen();
-      }));
-    });
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    timer!.cancel();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,13 +23,13 @@ class _SplashScreenState extends State<SplashScreen> {
           TextButton(
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (_) {
-                return IntroScreen();
+                return LogInScreen();
               }));
             },
             child: Text(
               "Skip",
               style: TextStyle(
-                color: Colors.black,
+                color: AppColors.primaryColor,
               ),
             ),
           ),
@@ -81,6 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 style: TextStyle(
                   fontStyle: FontStyle.italic,
                   fontSize: Sizer(context).height * 0.04,
+                  color: AppColors.primaryColor,
                 ),
               ),
 
