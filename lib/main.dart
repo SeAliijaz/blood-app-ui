@@ -1,6 +1,5 @@
 import 'package:blood_app_ui/Constants/constants.dart';
 import 'package:blood_app_ui/Initial-Screen/splash_screen.dart';
-import 'package:blood_app_ui/Screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -22,9 +21,11 @@ class MyApp extends StatelessWidget {
 
       ///Setting Theme
       theme: ThemeData(
+        ///Colors
         primaryColor: AppColors.primaryColor,
         scaffoldBackgroundColor: Colors.white,
 
+        ///appBarTheme
         appBarTheme: AppBarTheme(
           color: AppColors.primaryColor,
         ),
@@ -36,7 +37,7 @@ class MyApp extends StatelessWidget {
       ),
 
       ///Home
-      home: HomeScreen(),
+      home: SplashScreen(),
     );
   }
 }

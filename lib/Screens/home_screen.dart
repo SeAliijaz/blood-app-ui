@@ -1,17 +1,23 @@
 import 'package:blood_app_ui/Constants/constants.dart';
+import 'package:blood_app_ui/Credientals-Screens/login_screen.dart';
+import 'package:blood_app_ui/Models/blood_card_model.dart';
 import 'package:blood_app_ui/Screens/details_screen.dart';
+import 'package:blood_app_ui/Screens/news_tips_screen.dart';
+import 'package:blood_app_ui/Screens/profile_screen.dart';
+import 'package:blood_app_ui/Widgets/custom_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
+  final bool? isDetailsPage = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Blood Requests"),
       ),
-      drawer: Drawer(),
+      drawer: customDrawer(context),
       body: Container(
         height: Sizer(context).height,
         width: Sizer(context).width,
@@ -19,12 +25,8 @@ class HomeScreen extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(
-                  top: 20,
-                  left: 20,
-                  right: 20,
-                  bottom: 20,
-                ),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 20, horizontal: 20),
                 child: Center(
                   child: Card(
                     shape: RoundedRectangleBorder(
@@ -60,7 +62,7 @@ class HomeScreen extends StatelessWidget {
                     vertical: 10,
                   ),
                   child: const Text(
-                    "Cureent Requests",
+                    "Current Requests",
                     style: TextStyle(
                       fontSize: 22,
                       color: AppColors.primaryColor,
@@ -71,91 +73,147 @@ class HomeScreen extends StatelessWidget {
 
               ///Here We will make cards
               Column(
-                children: [
-                  CustomBloodCard(),
-                  CustomBloodCard(),
-                  CustomBloodCard(),
-                  CustomBloodCard(),
-                  CustomBloodCard(),
-                  CustomBloodCard(),
-                  CustomBloodCard(),
-                ],
-              )
+                  children: bloodCardModel.map((e) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 10,
+                    vertical: 10,
+                  ),
+                  child: Card(
+                    shadowColor: Colors.grey,
+                    elevation: 10,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(20),
+                      bottomRight: Radius.circular(20),
+                    )),
+                    child: Column(
+                      children: [
+                        ListTile(
+                          textColor: Colors.black,
+                          title: Text("Patient Name"),
+                          subtitle: Text(e.patientName!),
+                          trailing: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Needed by"),
+                              Text(e.date!),
+                            ],
+                          ),
+                        ),
+                        ListTile(
+                          textColor: Colors.black,
+                          title: Text("Location"),
+                          subtitle: Text(e.location!),
+                          trailing: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text("Blood type"),
+                              Text(e.bloodType!),
+                            ],
+                          ),
+                        ),
+                        MaterialButton(
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(20),
+                            bottomRight: Radius.circular(20),
+                          )),
+                          height: Sizer(context).height * 0.060,
+                          minWidth: Sizer(context).width,
+                          color: AppColors.primaryColor,
+                          onPressed: () {
+                            Navigator.push(context,
+                                MaterialPageRoute(builder: (_) {
+                              return DetailsScreen(
+                                isSubmitted: e.isSubmitted,
+                                patientName: e.patientName,
+                                date: e.date,
+                                location: e.location,
+                                bloodType: e.bloodType,
+                                submittedBy: e.submittedBy,
+                              );
+                            }));
+                          },
+                          child: Text(
+                            "Details",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }).toList()),
             ],
           ),
         ),
       ),
     );
   }
-}
 
-class CustomBloodCard extends StatelessWidget {
-  const CustomBloodCard({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: 10,
-        vertical: 10,
-      ),
-      child: Card(
-        shadowColor: Colors.grey,
-        elevation: 10,
-        shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(20),
-          bottomRight: Radius.circular(20),
-        )),
-        child: Column(
-          children: [
-            ListTile(
-              title: Text("Patient Name"),
-              subtitle: Text("Title 1"),
-              trailing: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+  Drawer customDrawer(BuildContext context) {
+    return Drawer(
+      child: Column(
+        children: [
+          Container(
+            width: Sizer(context).width,
+            child: DrawerHeader(
+              decoration: BoxDecoration(
+                color: AppColors.primaryColor,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Text("Needed by"),
-                  Text("18/09/2023"),
+                  CircleAvatar(
+                    radius: 40,
+                    backgroundImage: AssetImage("assets/dp.jpg"),
+                  ),
+                  Text(
+                    "Muhammad Ali",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  Text(
+                    "ExampleEmail@gmail.com",
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ],
               ),
             ),
-            ListTile(
-              title: Text("Location"),
-              subtitle: Text("Location 1"),
-              trailing: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Blood type"),
-                  Text("A+"),
-                ],
-              ),
-            ),
-            MaterialButton(
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(20),
-                bottomRight: Radius.circular(20),
-              )),
-              height: Sizer(context).height * 0.060,
-              minWidth: Sizer(context).width,
-              color: AppColors.primaryColor,
-              onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (_) {
-                  return DetailsScreen();
-                }));
-              },
-              child: Text(
-                "Details",
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ],
-        ),
+          ),
+          CustomListTile(
+            leading: Icon(Icons.person_outline),
+            title: "Profile",
+            onTap: () {
+              goToPage(context, ProfileScreen());
+            },
+          ),
+          CustomListTile(
+            leading: Icon(Icons.bloodtype_outlined),
+            title: "Request Blood",
+          ),
+          CustomListTile(
+            leading: Icon(Icons.notifications_outlined),
+            title: "News & Tips",
+            onTap: () {
+              goToPage(context, NewsTipsScreen());
+            },
+          ),
+          CustomListTile(
+            leading: Icon(Icons.question_mark_outlined),
+            title: "Can i donate blood?",
+          ),
+          CustomListTile(
+            leading: Icon(Icons.logout),
+            title: "Logout",
+            onTap: () {
+              goToPage(context, LogInScreen());
+            },
+          ),
+        ],
       ),
     );
   }

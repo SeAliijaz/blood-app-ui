@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class AppColors {
-  static const Color primaryColor = Colors.red;
-  static Color secondaryColor = const Color.fromRGBO(255, 235, 238, 1);
+  static const Color primaryColor = Colors.redAccent;
+  static Color secondaryColor = Colors.red.shade200;
   // static const primaryColor = Color(0xFFFFC107);
   // static const secondaryColor = Color(0xFF242430);
   // static const darkColor = Color(0xFF191923);
@@ -14,24 +14,6 @@ class AppColors {
 ///Flutter Toast
 void showMessage(String msg) {
   Fluttertoast.showToast(msg: msg);
-}
-
-///Snackbar
-void showSnackBar(BuildContext context, String? text) {
-  final snackBar = SnackBar(
-    content: Text(
-      text ?? "Your Text Here",
-      style: TextStyle(
-        color: AppColors.primaryColor,
-      ),
-    ),
-    action: SnackBarAction(
-      label: 'Dismiss',
-      textColor: AppColors.primaryColor,
-      onPressed: () {},
-    ),
-  );
-  ScaffoldMessenger.of(context).showSnackBar(snackBar);
 }
 
 /// MediaQuery.of(context).size;
@@ -47,4 +29,10 @@ class Sizer {
 
   /// MediaQuery.of(context).size.width;
   double get width => MediaQuery.of(context).size.width;
+}
+
+goToPage(BuildContext context, Widget nextScreen) {
+  Navigator.push(context, MaterialPageRoute(builder: (_) {
+    return nextScreen;
+  }));
 }

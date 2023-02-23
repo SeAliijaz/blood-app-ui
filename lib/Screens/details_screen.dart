@@ -1,8 +1,29 @@
 import 'package:blood_app_ui/Constants/constants.dart';
 import 'package:flutter/material.dart';
 
-class DetailsScreen extends StatelessWidget {
-  const DetailsScreen({Key? key}) : super(key: key);
+class DetailsScreen extends StatefulWidget {
+  bool? isSubmitted = false;
+  String? patientName;
+  String? date;
+  String? location;
+  String? bloodType;
+  String? submittedBy;
+
+  DetailsScreen({
+    Key? key,
+    this.isSubmitted,
+    this.patientName,
+    this.date,
+    this.location,
+    this.bloodType,
+    this.submittedBy,
+  }) : super(key: key);
+
+  @override
+  State<DetailsScreen> createState() => _DetailsScreenState();
+}
+
+class _DetailsScreenState extends State<DetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,19 +34,17 @@ class DetailsScreen extends StatelessWidget {
           children: [
             ListTile(
               title: Text("Submitted By"),
-              subtitle: Text("Ali on 19/02/2023"),
+              subtitle: widget.isSubmitted == true
+                  ? Text("${widget.submittedBy} On ${widget.date}")
+                  : Text("Not Submitted Yet"),
             ),
             ListTile(
               title: Text("Patient Name"),
-              subtitle: Text("Ahmad"),
+              subtitle: Text(widget.patientName!),
             ),
             ListTile(
               title: Text("Location"),
-              subtitle: Text("Sahiwal, Punjab Pakistan"),
-            ),
-            ListTile(
-              title: Text("Submitted By"),
-              subtitle: Text("Ali on 19/02/2023"),
+              subtitle: Text(widget.location!),
             ),
             ListTile(
               title: Text("Blood Type"),
@@ -67,11 +86,11 @@ class DetailsScreen extends StatelessWidget {
               thickness: 1,
             ),
             Padding(
-              padding: const EdgeInsets.all(25.0),
+              padding: const EdgeInsets.all(15.0),
               child: MaterialButton(
                 shape: StadiumBorder(),
                 height: Sizer(context).height * 0.060,
-                minWidth: Sizer(context).width,
+                minWidth: Sizer(context).width * 0.80,
                 color: AppColors.primaryColor,
                 child: Text(
                   "Contact",
@@ -79,15 +98,17 @@ class DetailsScreen extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  showMessage("This Feature will be added soon");
+                },
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(25.0),
+              padding: const EdgeInsets.all(15.0),
               child: MaterialButton(
                 shape: StadiumBorder(),
                 height: Sizer(context).height * 0.060,
-                minWidth: Sizer(context).width,
+                minWidth: Sizer(context).width * 0.80,
                 color: Colors.green,
                 child: Text(
                   "Mark as Fulfilled",
@@ -95,7 +116,9 @@ class DetailsScreen extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  showMessage("Marked as Fulfilled");
+                },
               ),
             ),
           ],

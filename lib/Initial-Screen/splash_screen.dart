@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:blood_app_ui/Constants/constants.dart';
 import 'package:blood_app_ui/Credientals-Screens/login_screen.dart';
 import 'package:flutter/material.dart';
@@ -13,27 +15,49 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    // start the timer when the screen loads
+    _timer = Timer.periodic(Duration(seconds: 5), (timer) {
+      // navigate to the next screen after 5 seconds
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => LogInScreen()));
+    });
+  }
+
+  @override
+  void dispose() {
+    // cancel the timer when the screen is disposed
+    _timer?.cancel();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         elevation: 0.0,
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_) {
-                return LogInScreen();
-              }));
-            },
-            child: Text(
-              "Skip",
-              style: TextStyle(
-                color: AppColors.primaryColor,
-              ),
+      ),
+      bottomNavigationBar: GestureDetector(
+        onTap: () {
+          goToPage(context, LogInScreen());
+        },
+        child: Container(
+          height: 60,
+          color: AppColors.primaryColor,
+          child: Center(
+              child: Text(
+            "Next",
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
             ),
-          ),
-        ],
+          )),
+        ),
       ),
       body: SizedBox(
         height: Sizer(context).height,
