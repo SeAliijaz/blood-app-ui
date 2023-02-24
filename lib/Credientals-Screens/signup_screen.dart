@@ -1,7 +1,7 @@
 import 'package:blood_app_ui/Constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -185,8 +185,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                           });
                                     },
                                     icon: Center(
-                                      child: FaIcon(
-                                        FontAwesomeIcons.exclamation,
+                                      child: Icon(
+                                        MdiIcons.exclamation,
                                         color: Colors.white,
                                         size: Sizer(context).height * 0.022,
                                       ),

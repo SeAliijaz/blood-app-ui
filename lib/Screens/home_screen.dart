@@ -4,6 +4,7 @@ import 'package:blood_app_ui/Models/blood_card_model.dart';
 import 'package:blood_app_ui/Screens/details_screen.dart';
 import 'package:blood_app_ui/Screens/news_tips_screen.dart';
 import 'package:blood_app_ui/Screens/profile_screen.dart';
+import 'package:blood_app_ui/Screens/who_can_donate_blood_screen.dart';
 import 'package:blood_app_ui/Widgets/custom_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -123,7 +124,8 @@ class HomeScreen extends StatelessWidget {
                           minWidth: Sizer(context).width,
                           color: AppColors.primaryColor,
                           onPressed: () {
-                            Navigator.push(context,
+                            ///Getting Values to next screen
+                            Navigator.pushReplacement(context,
                                 MaterialPageRoute(builder: (_) {
                               return DetailsScreen(
                                 isSubmitted: e.isSubmitted,
@@ -192,8 +194,11 @@ class HomeScreen extends StatelessWidget {
             },
           ),
           CustomListTile(
-            leading: Icon(Icons.bloodtype_outlined),
+            leading: Icon(Icons.bloodtype),
             title: "Request Blood",
+            onTap: () {
+              // goToPage(context, RequestBloodScreen());
+            },
           ),
           CustomListTile(
             leading: Icon(Icons.notifications_outlined),
@@ -205,6 +210,9 @@ class HomeScreen extends StatelessWidget {
           CustomListTile(
             leading: Icon(Icons.question_mark_outlined),
             title: "Can i donate blood?",
+            onTap: () {
+              goToPage(context, WhoCanDonateBloodScreen());
+            },
           ),
           CustomListTile(
             leading: Icon(Icons.logout),

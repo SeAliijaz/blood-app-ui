@@ -1,8 +1,6 @@
 import 'package:blood_app_ui/Constants/constants.dart';
 import 'package:blood_app_ui/Models/news_tips_model.dart';
-import 'package:clipboard/clipboard.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:share_plus/share_plus.dart';
 
 class NewsTipsScreen extends StatefulWidget {

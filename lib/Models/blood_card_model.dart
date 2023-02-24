@@ -1,5 +1,4 @@
 class BloodCardModel {
-  String? donatedBy;
   String? patientName;
   String? date;
   String? location;
@@ -8,7 +7,6 @@ class BloodCardModel {
   String? submittedBy;
 
   BloodCardModel({
-    this.donatedBy,
     this.patientName,
     this.date,
     this.location,
