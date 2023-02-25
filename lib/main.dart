@@ -1,9 +1,8 @@
 import 'package:blood_app_ui/Constants/constants.dart';
 import 'package:blood_app_ui/Initial-Screen/splash_screen.dart';
-import 'package:blood_app_ui/Screens/home_screen.dart';
+import 'package:blood_app_ui/Screens/Request-Blood/blood_request_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,31 +14,31 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      ///Title of app
+      title: 'Blood-App-UI',
 
-        ///Title of app
-        title: 'Blood-App-UI',
+      ///debugShowCheckedModeBanner
+      debugShowCheckedModeBanner: false,
 
-        ///debugShowCheckedModeBanner
-        debugShowCheckedModeBanner: false,
+      ///Setting Theme
+      theme: ThemeData(
+        ///Colors
+        primaryColor: AppColors.primaryColor,
+        scaffoldBackgroundColor: Colors.white,
 
-        ///Setting Theme
-        theme: ThemeData(
-          ///Colors
-          primaryColor: AppColors.primaryColor,
-          scaffoldBackgroundColor: Colors.white,
-
-          ///appBarTheme
-          appBarTheme: AppBarTheme(
-            color: AppColors.primaryColor,
-          ),
-
-          ///Default Text Theme
-          textTheme: GoogleFonts.firaSansTextTheme(
-            Theme.of(context).textTheme,
-          ),
+        ///appBarTheme
+        appBarTheme: AppBarTheme(
+          color: AppColors.primaryColor,
         ),
 
-        ///Home
-        home: SplashScreen());
+        ///Default Text Theme
+        textTheme: GoogleFonts.firaSansTextTheme(
+          Theme.of(context).textTheme,
+        ),
+      ),
+
+      ///Home
+      home: BloodRequestScreen(),
+    );
   }
 }

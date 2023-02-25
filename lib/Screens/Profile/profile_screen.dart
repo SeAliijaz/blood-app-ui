@@ -2,7 +2,7 @@ import 'package:blood_app_ui/Components/rounded_divs.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../Constants/constants.dart';
+import '../../Constants/constants.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);

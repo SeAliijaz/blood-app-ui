@@ -62,4 +62,19 @@ List<BloodCardModel> bloodCardModel = [
     bloodType: "O-",
     isSubmitted: false,
   ),
+  BloodCardModel(
+    patientName: "Umer",
+    date: "10/3/2023",
+    location: "Ghaziabad",
+    bloodType: "AB-",
+    isSubmitted: true,
+    submittedBy: "Mubashar Tariq",
+  ),
+  BloodCardModel(
+    patientName: "Alex",
+    date: "10/3/2023",
+    location: "Delhi",
+    bloodType: "AB+",
+    isSubmitted: false,
+  ),
 ];

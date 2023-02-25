@@ -1,6 +1,7 @@
 import "package:blood_app_ui/Constants/constants.dart";
 import "package:blood_app_ui/Credientals-Screens/signup_screen.dart";
-import "package:blood_app_ui/Screens/home_screen.dart";
+import 'package:blood_app_ui/Screens/Home/home_screen.dart';
+import "package:blood_app_ui/Widgets/custom_text_form_field.dart";
 import "package:flutter/material.dart";
 import "package:flutter_svg/flutter_svg.dart";
 import "package:material_design_icons_flutter/material_design_icons_flutter.dart";
@@ -80,16 +81,12 @@ class _LogInScreenState extends State<LogInScreen> {
                                           fontSize:
                                               Sizer(context).height * 0.040),
                                     ),
-                                    TextFormField(
+
+                                    ///Email Field
+                                    CustomTextFormField(
                                       controller: emailC,
-                                      decoration: InputDecoration(
-                                        prefixIcon: Icon(Icons.email_outlined),
-                                        labelText: "Enter Email",
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                      ),
+                                      labelText: "Enter Email",
+                                      prefixIcon: Icons.email_outlined,
                                       validator: (v) {
                                         if (v!.isEmpty) {
                                           return "Field Can'not be empty";
@@ -105,28 +102,12 @@ class _LogInScreenState extends State<LogInScreen> {
                                         }
                                       },
                                     ),
-                                    TextFormField(
+
+                                    ///PassWord field
+                                    CustomTextFormField(
                                       controller: passC,
-                                      decoration: InputDecoration(
-                                        prefixIcon: Icon(Icons.lock_outline),
-                                        labelText: "Enter Password",
-                                        border: OutlineInputBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(5),
-                                        ),
-                                        suffixIcon: IconButton(
-                                          onPressed: () {
-                                            setState(() {
-                                              isObsecure = !isObsecure!;
-                                            });
-                                          },
-                                          icon: Icon(
-                                            isObsecure == false
-                                                ? Icons.visibility_off
-                                                : Icons.remove_red_eye,
-                                          ),
-                                        ),
-                                      ),
+                                      labelText: "Enter Password",
+                                      prefixIcon: Icons.lock_outlined,
                                       obscureText: isObsecure!,
                                       validator: (v) {
                                         if (v!.isEmpty) {
@@ -138,6 +119,18 @@ class _LogInScreenState extends State<LogInScreen> {
                                           return null;
                                         }
                                       },
+                                      suffixIcon: IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            isObsecure = !isObsecure!;
+                                          });
+                                        },
+                                        icon: Icon(
+                                          isObsecure == false
+                                              ? Icons.visibility_off
+                                              : Icons.remove_red_eye,
+                                        ),
+                                      ),
                                     ),
                                     MaterialButton(
                                       height: Sizer(context).height * 0.070,

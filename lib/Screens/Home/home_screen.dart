@@ -1,10 +1,11 @@
 import 'package:blood_app_ui/Constants/constants.dart';
 import 'package:blood_app_ui/Credientals-Screens/login_screen.dart';
 import 'package:blood_app_ui/Models/blood_card_model.dart';
-import 'package:blood_app_ui/Screens/details_screen.dart';
-import 'package:blood_app_ui/Screens/news_tips_screen.dart';
-import 'package:blood_app_ui/Screens/profile_screen.dart';
-import 'package:blood_app_ui/Screens/who_can_donate_blood_screen.dart';
+import 'package:blood_app_ui/Screens/Home/details_screen.dart';
+import 'package:blood_app_ui/Screens/News-Tips-Screen/news_tips_screen.dart';
+import 'package:blood_app_ui/Screens/Profile/profile_screen.dart';
+import 'package:blood_app_ui/Screens/Request-Blood/blood_request_screen.dart';
+import 'package:blood_app_ui/Screens/Who-Can-Donate-Blood/who_can_donate_blood_screen.dart';
 import 'package:blood_app_ui/Widgets/custom_list_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -197,7 +198,7 @@ class HomeScreen extends StatelessWidget {
             leading: Icon(Icons.bloodtype),
             title: "Request Blood",
             onTap: () {
-              // goToPage(context, RequestBloodScreen());
+              goToPage(context, BloodRequestScreen());
             },
           ),
           CustomListTile(
