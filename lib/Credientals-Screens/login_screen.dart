@@ -24,29 +24,7 @@ class _LogInScreenState extends State<LogInScreen> {
   bool isLoading = false;
 
   void loginForm() {
-    if (_formKey.currentState!.validate()) {
-      try {
-        if (emailC.text.trim() == userEmail &&
-            passC.text.trim() == userPassword) {
-          setState(() {
-            isLoading = true;
-          });
-
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => HomeScreen(),
-            ),
-          );
-          showMessage("Login Successfull");
-        } else {
-          Error e = Error();
-          showMessage(e.toString());
-        }
-      } catch (e) {
-        showMessage(e.toString());
-      }
-    }
+    if (_formKey.currentState!.validate()) {}
   }
 
   bool? isObsecure = false;
@@ -158,31 +136,6 @@ class _LogInScreenState extends State<LogInScreen> {
                                         ),
                                       ),
                                     ),
-
-                                    ///Email and Password Tolder
-                                    Align(
-                                      alignment: Alignment.bottomRight,
-                                      child: CircleAvatar(
-                                        backgroundColor: AppColors.primaryColor,
-                                        child: IconButton(
-                                          onPressed: () {
-                                            showDialog(
-                                                context: context,
-                                                builder: (_) {
-                                                  return _showDialogMethod();
-                                                });
-                                          },
-                                          icon: Center(
-                                            child: Icon(
-                                              MdiIcons.exclamation,
-                                              color: Colors.white,
-                                              size:
-                                                  Sizer(context).height * 0.022,
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
                                   ],
                                 ),
                               ),
@@ -209,7 +162,10 @@ class _LogInScreenState extends State<LogInScreen> {
                             ),
                             TextButton(
                               onPressed: () {
-                                goToPage(context, SignUpScreen());
+                                Navigator.push(context,
+                                    MaterialPageRoute(builder: (_) {
+                                  return SignUpScreen();
+                                }));
                               },
                               child: Text(
                                 "Create Account",

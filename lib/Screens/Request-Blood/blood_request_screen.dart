@@ -61,10 +61,8 @@ class _BloodRequestScreenState extends State<BloodRequestScreen> {
               "hospital": hospitalController.text,
               'bloodGroup': selectedBloodGroup,
             };
-
-            goToPage(
-              context,
-              BloodRequestDetailsScreen(
+            Navigator.push(context, MaterialPageRoute(builder: (_) {
+              return BloodRequestDetailsScreen(
                 requestData: {
                   "name": nameController.text,
                   "age": ageController.text,
@@ -73,8 +71,8 @@ class _BloodRequestScreenState extends State<BloodRequestScreen> {
                   "hospital": hospitalController.text,
                   "bloodGroup": selectedBloodGroup,
                 },
-              ),
-            );
+              );
+            }));
           }
         },
         child: Container(

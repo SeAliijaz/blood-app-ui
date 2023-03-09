@@ -191,36 +191,42 @@ class HomeScreen extends StatelessWidget {
             leading: Icon(Icons.person_outline),
             title: "Profile",
             onTap: () {
-              goToPage(context, ProfileScreen());
+              Navigator.push(context, MaterialPageRoute(builder: (_) {
+                return HomeScreen();
+              }));
             },
           ),
           CustomListTile(
             leading: Icon(Icons.bloodtype),
             title: "Request Blood",
             onTap: () {
-              goToPage(context, BloodRequestScreen());
+              Navigator.push(context, MaterialPageRoute(builder: (_) {
+                return HomeScreen();
+              }));
             },
           ),
           CustomListTile(
             leading: Icon(Icons.notifications_outlined),
             title: "News & Tips",
             onTap: () {
-              goToPage(context, NewsTipsScreen());
+              Navigator.push(context, MaterialPageRoute(builder: (_) {
+                return HomeScreen();
+              }));
             },
           ),
           CustomListTile(
             leading: Icon(Icons.question_mark_outlined),
             title: "Can i donate blood?",
             onTap: () {
-              goToPage(context, WhoCanDonateBloodScreen());
+              Navigator.push(context, MaterialPageRoute(builder: (_) {
+                return HomeScreen();
+              }));
             },
           ),
           CustomListTile(
             leading: Icon(Icons.logout),
             title: "Logout",
-            onTap: () {
-              goToPage(context, LogInScreen());
-            },
+            onTap: () {},
           ),
         ],
       ),

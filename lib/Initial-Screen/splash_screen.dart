@@ -44,7 +44,9 @@ class _SplashScreenState extends State<SplashScreen> {
       ),
       bottomNavigationBar: GestureDetector(
         onTap: () {
-          goToPage(context, LogInScreen());
+          Navigator.push(context, MaterialPageRoute(builder: (_) {
+            return LogInScreen();
+          }));
         },
         child: Container(
           height: 60,

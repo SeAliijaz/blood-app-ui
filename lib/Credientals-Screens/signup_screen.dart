@@ -2,7 +2,6 @@ import 'package:blood_app_ui/Constants/constants.dart';
 import 'package:blood_app_ui/Widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -123,31 +122,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ///SizedBox
                               SizedBox(height: 10),
 
-                              ///DropdownButtonFormField
-                              DropdownButtonFormField(
-                                validator: (v) {
-                                  if (v!.isEmpty) {
-                                    return "field should not be empty";
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                                disabledHint: Text("Can't select"),
-                                decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.bloodtype_outlined),
-                                  hintText: selectedValue,
-                                  labelText: "Blood Type",
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(5),
-                                  ),
-                                ),
-                                items: dropdownItems,
-                                value: selectedValue,
-                                onChanged: (v) {
-                                  selectedValue = v!;
-                                },
-                              ),
-                              SizedBox(height: 05),
+                              ///Button<
                               MaterialButton(
                                 height: Sizer(context).height * 0.070,
                                 minWidth: Sizer(context).width,
@@ -159,30 +134,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   "Register",
                                   style: TextStyle(
                                     color: Colors.white,
-                                  ),
-                                ),
-                              ),
-
-                              ///Email and Password Tolder
-                              Align(
-                                alignment: Alignment.bottomRight,
-                                child: CircleAvatar(
-                                  backgroundColor: AppColors.primaryColor,
-                                  child: IconButton(
-                                    onPressed: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (_) {
-                                            return _showDialogMethod();
-                                          });
-                                    },
-                                    icon: Center(
-                                      child: Icon(
-                                        MdiIcons.exclamation,
-                                        color: Colors.white,
-                                        size: Sizer(context).height * 0.022,
-                                      ),
-                                    ),
                                   ),
                                 ),
                               ),
@@ -200,42 +151,4 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
-
-  AlertDialog _showDialogMethod() {
-    String message =
-        "This is Just Demo Screen With Validations, If You Want to Check App Go To LogIn Page";
-    return AlertDialog(
-      title: Text(
-        "This Feature is Not Uploaded Yet!",
-        textAlign: TextAlign.center,
-      ),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          ListTile(
-            leading: Icon(Icons.message_outlined),
-            title: Text(
-              message,
-              textAlign: TextAlign.center,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-///List<DropdownMenuItem<String>> get dropdownItems
-List<DropdownMenuItem<String>> get dropdownItems {
-  List<DropdownMenuItem<String>> menuItems = [
-    DropdownMenuItem(value: "A+", child: Text("A+")),
-    DropdownMenuItem(value: "B+", child: Text("B+")),
-    DropdownMenuItem(value: "A-", child: Text("A-")),
-    DropdownMenuItem(value: "B-", child: Text("B-")),
-    DropdownMenuItem(value: "AB+", child: Text("AB+")),
-    DropdownMenuItem(value: "AB-", child: Text("AB-")),
-    DropdownMenuItem(value: "O+", child: Text("O+")),
-    DropdownMenuItem(value: "O-", child: Text("O-")),
-  ];
-  return menuItems;
 }
