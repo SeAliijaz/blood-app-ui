@@ -1,6 +1,5 @@
 import 'package:blood_app_ui/Constants/constants.dart';
 import 'package:blood_app_ui/Initial-Screen/splash_screen.dart';
-import 'package:blood_app_ui/Screens/Request-Blood/blood_request_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -38,7 +37,7 @@ class MyApp extends StatelessWidget {
       ),
 
       ///Home
-      home: BloodRequestScreen(),
+      home: SplashScreen(),
     );
   }
 }

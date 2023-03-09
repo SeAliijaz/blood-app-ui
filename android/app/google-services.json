@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "269264095424",
+    "project_id": "blood-app-ui-cdbfb",
+    "storage_bucket": "blood-app-ui-cdbfb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:269264095424:android:ea3919bee312576ae58525",
+        "android_client_info": {
+          "package_name": "com.example.blood_app_ui"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "269264095424-9402bcrvfmg0la39659qsta88brafo75.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA6nrvsB78PhCsZ8LxTgbgTZtDc5M2nWI8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "269264095424-9402bcrvfmg0la39659qsta88brafo75.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
