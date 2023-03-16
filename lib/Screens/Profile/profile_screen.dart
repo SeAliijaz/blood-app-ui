@@ -59,12 +59,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         _list(
                           Icon(Icons.person_outline),
                           "Name",
-                          userData["name"],
+                          userData["name"] ??
+                              "Something Problem Occured,\nRegister Account Again!",
                         ),
                         _list(
                           Icon(Icons.email_outlined),
                           "Email",
-                          userData["email"],
+                          userData["email"] ?? "Something Problem Occured",
                         ),
 
                         ///LogOut Button
