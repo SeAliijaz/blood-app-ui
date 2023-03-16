@@ -29,5 +29,5 @@ class Sizer {
 
 class Photos {
   static const String profileImage =
-      "https://scontent.flhe13-1.fna.fbcdn.net/v/t39.30808-6/273325549_125774646633316_4540171477980727382_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=174925&_nc_eui2=AeEBWwDdpui0fxf-eWm4-L7joDLfOsJvV8OgMt86wm9Xw7utBmbv-vPnJnUwnZwR1p6KvF2JurRzrYEiWHpHDmSr&_nc_ohc=IK9m3wLqxvIAX88Dt-a&_nc_ht=scontent.flhe13-1.fna&oh=00_AfCF_9_wz5vy-7yZknFbw1W8J6gl2cR57--y-9EgmKNLVQ&oe=64190EC7";
+      "https://cdn.meiker.io/assets/100918/2022/08/icon_2022081403545262f8720c5e7ec.png";
 }
