@@ -1,10 +1,12 @@
 import "package:blood_app_ui/Constants/constants.dart";
 import "package:blood_app_ui/Credientals-Screens/signup_screen.dart";
-import 'package:blood_app_ui/Screens/Home/home_screen.dart';
+import "package:blood_app_ui/Screens/Home/home_screen.dart";
+import "package:blood_app_ui/Widgets/custom_progress_indicator.dart";
 import "package:blood_app_ui/Widgets/custom_text_form_field.dart";
+import "package:cloud_firestore/cloud_firestore.dart";
+import 'package:firebase_auth/firebase_auth.dart';
 import "package:flutter/material.dart";
 import "package:flutter_svg/flutter_svg.dart";
-import "package:material_design_icons_flutter/material_design_icons_flutter.dart";
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({Key? key}) : super(key: key);
@@ -15,16 +17,58 @@ class LogInScreen extends StatefulWidget {
 
 class _LogInScreenState extends State<LogInScreen> {
   ///Controllers
-  final emailC = TextEditingController();
-  final passC = TextEditingController();
+  ///vars
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-
-  ///Email And Password validation
-  String? userEmail = "user@gmail.com", userPassword = "user";
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseAuth _auth = FirebaseAuth.instance;
   bool isLoading = false;
 
-  void loginForm() {
-    if (_formKey.currentState!.validate()) {}
+  ///loginForm
+  void loginForm() async {
+    if (_formKey.currentState!.validate()) {
+      setState(() {
+        isLoading = true;
+      });
+
+      try {
+        final UserCredential userCredential =
+            await _auth.signInWithEmailAndPassword(
+          email: _emailController.text,
+          password: _passwordController.text,
+        );
+        if (userCredential.user != null) {
+          await _firestore
+              .collection('users')
+              .doc(userCredential.user!.uid)
+              .set({
+            'email': userCredential.user!.email,
+          });
+          Navigator.of(context).pushAndRemoveUntil(
+              MaterialPageRoute(builder: (context) => HomeScreen()),
+              (Route<dynamic> route) => false);
+        } else {
+          showMessage('User not found');
+        }
+      } on FirebaseAuthException catch (e) {
+        setState(() {
+          isLoading = false;
+        });
+        if (e.code == 'user-not-found') {
+          showMessage('User not found');
+        } else if (e.code == 'wrong-password') {
+          showMessage('Incorrect password');
+        } else {
+          showMessage(e.message.toString());
+        }
+      } catch (e) {
+        setState(() {
+          isLoading = false;
+        });
+        showMessage(e.toString());
+      }
+    }
   }
 
   bool? isObsecure = false;
@@ -33,7 +77,7 @@ class _LogInScreenState extends State<LogInScreen> {
     return Scaffold(
       backgroundColor: AppColors.primaryColor,
       body: isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? Center(child: CustomProgressIndicator())
           : SafeArea(
               child: Padding(
                 padding: const EdgeInsets.all(15.0),
@@ -62,15 +106,17 @@ class _LogInScreenState extends State<LogInScreen> {
 
                                     ///Email Field
                                     CustomTextFormField(
-                                      controller: emailC,
+                                      controller: _emailController,
                                       labelText: "Enter Email",
                                       prefixIcon: Icons.email_outlined,
                                       validator: (v) {
                                         if (v!.isEmpty) {
                                           return "Field Can'not be empty";
                                         }
-                                        if (!v.contains("user@gmail.com")) {
-                                          return "Email Does'nt Matched!";
+
+                                        if (!RegExp(r'\S+@\S+\.\S+')
+                                            .hasMatch(v)) {
+                                          return 'Please enter a valid email address';
                                         }
                                         if (!v.contains("@") ||
                                             !v.contains("@gmail.com")) {
@@ -83,7 +129,7 @@ class _LogInScreenState extends State<LogInScreen> {
 
                                     ///PassWord field
                                     CustomTextFormField(
-                                      controller: passC,
+                                      controller: _passwordController,
                                       labelText: "Enter Password",
                                       prefixIcon: Icons.lock_outlined,
                                       obscureText: isObsecure!,

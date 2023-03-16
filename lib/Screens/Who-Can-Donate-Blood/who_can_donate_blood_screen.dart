@@ -12,14 +12,12 @@ class WhoCanDonateBloodScreen extends StatelessWidget {
         title: Text("Who Can Donate Blood?"),
       ),
       body: ListView.separated(
-        itemCount: whoCanDonateList.length,
+        itemCount: whoCanDonateModel.length,
         separatorBuilder: (BuildContext context, int index) {
-          return Divider(
-            color: AppColors.primaryColor,
-          );
+          return const Divider(color: AppColors.primaryColor);
         },
         itemBuilder: (BuildContext context, int index) {
-          WhoCanDonateBloodModel value = whoCanDonateList[index];
+          final WhoCanDonateBloodModel value = whoCanDonateModel[index];
           return ListTile(
             iconColor: AppColors.primaryColor,
             textColor: Colors.black,

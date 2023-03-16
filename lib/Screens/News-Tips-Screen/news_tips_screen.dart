@@ -23,7 +23,7 @@ class _NewsTipsScreenState extends State<NewsTipsScreen> {
       ///ListView.separated
       body: isLoading == false
           ? ListView.separated(
-              itemCount: newsTipsModel.length,
+              itemCount: tipsModel.length,
               separatorBuilder: (BuildContext context, int index) {
                 return Padding(
                   padding: const EdgeInsets.all(5.0),
@@ -33,7 +33,7 @@ class _NewsTipsScreenState extends State<NewsTipsScreen> {
                 );
               },
               itemBuilder: (BuildContext context, int index) {
-                final NewsTipsModel value = newsTipsModel[index];
+                final NewsTipsModel value = tipsModel[index];
                 return ListTile(
                   iconColor: AppColors.primaryColor,
                   leading: Icon(Icons.notifications_active_outlined),

@@ -1,25 +1,43 @@
 import 'package:blood_app_ui/Constants/constants.dart';
-import 'package:blood_app_ui/Credientals-Screens/login_screen.dart';
 import 'package:blood_app_ui/Models/blood_card_model.dart';
 import 'package:blood_app_ui/Screens/Home/details_screen.dart';
-import 'package:blood_app_ui/Screens/News-Tips-Screen/news_tips_screen.dart';
-import 'package:blood_app_ui/Screens/Profile/profile_screen.dart';
-import 'package:blood_app_ui/Screens/Request-Blood/blood_request_screen.dart';
-import 'package:blood_app_ui/Screens/Who-Can-Donate-Blood/who_can_donate_blood_screen.dart';
-import 'package:blood_app_ui/Widgets/custom_list_tile.dart';
+import 'package:blood_app_ui/Widgets/custom_drawer.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final bool? isDetailsPage = false;
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  void signOut() async {
+    try {
+      await _auth.signOut();
+    } catch (e) {
+      showMessage(e.toString());
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text("Blood Requests"),
       ),
-      drawer: customDrawer(context),
+      drawer: CustomDrawer(),
       body: Container(
         height: Sizer(context).height,
         width: Sizer(context).width,
@@ -126,7 +144,7 @@ class HomeScreen extends StatelessWidget {
                           color: AppColors.primaryColor,
                           onPressed: () {
                             ///Getting Values to next screen
-                            Navigator.pushReplacement(context,
+                            Navigator.push(context,
                                 MaterialPageRoute(builder: (_) {
                               return DetailsScreen(
                                 isSubmitted: e.isSubmitted,
@@ -153,82 +171,6 @@ class HomeScreen extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Drawer customDrawer(BuildContext context) {
-    return Drawer(
-      child: Column(
-        children: [
-          Container(
-            width: Sizer(context).width,
-            child: DrawerHeader(
-              decoration: BoxDecoration(
-                color: AppColors.primaryColor,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  CircleAvatar(
-                    radius: 40,
-                    backgroundImage: AssetImage("assets/dp.jpg"),
-                  ),
-                  Text(
-                    "Muhammad Ali",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                  Text(
-                    "ExampleEmail@gmail.com",
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          CustomListTile(
-            leading: Icon(Icons.person_outline),
-            title: "Profile",
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_) {
-                return HomeScreen();
-              }));
-            },
-          ),
-          CustomListTile(
-            leading: Icon(Icons.bloodtype),
-            title: "Request Blood",
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_) {
-                return HomeScreen();
-              }));
-            },
-          ),
-          CustomListTile(
-            leading: Icon(Icons.notifications_outlined),
-            title: "News & Tips",
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_) {
-                return HomeScreen();
-              }));
-            },
-          ),
-          CustomListTile(
-            leading: Icon(Icons.question_mark_outlined),
-            title: "Can i donate blood?",
-            onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (_) {
-                return HomeScreen();
-              }));
-            },
-          ),
-          CustomListTile(
-            leading: Icon(Icons.logout),
-            title: "Logout",
-            onTap: () {},
-          ),
-        ],
       ),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:blood_app_ui/Constants/constants.dart';
-import 'package:blood_app_ui/Initial-Screen/splash_screen.dart';
+import 'package:blood_app_ui/Initial-Screen/landing_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
 
         ///appBarTheme
-        appBarTheme: AppBarTheme(
+        appBarTheme: const AppBarTheme(
           color: AppColors.primaryColor,
         ),
 
@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       ),
 
       ///Home
-      home: SplashScreen(),
+      home: LandingScreen(),
     );
   }
 }

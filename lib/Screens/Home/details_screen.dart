@@ -36,7 +36,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
               title: Text("Submitted By"),
               subtitle: widget.isSubmitted == true
                   ? Text("${widget.submittedBy} On ${widget.date}")
-                  : Text("Not Submitted Yet"),
+                  : Text("Not Submitted"),
             ),
             ListTile(
               title: Text("Patient Name"),

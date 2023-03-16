@@ -1,7 +1,7 @@
 import 'dart:async';
-
 import 'package:blood_app_ui/Constants/constants.dart';
 import 'package:blood_app_ui/Credientals-Screens/login_screen.dart';
+import 'package:blood_app_ui/Widgets/custom_progress_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -96,12 +96,7 @@ class _SplashScreenState extends State<SplashScreen> {
                 height: Sizer(context).height * 0.02,
               ),
 
-              Center(
-                child: CircularProgressIndicator(
-                  color: AppColors.primaryColor,
-                  backgroundColor: AppColors.secondaryColor,
-                ),
-              ),
+              Center(child: CustomProgressIndicator()),
             ],
           ),
         ),

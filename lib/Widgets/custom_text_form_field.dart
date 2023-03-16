@@ -1,3 +1,5 @@
+import 'package:blood_app_ui/Constants/constants.dart';
+import 'package:blood_app_ui/Widgets/custom_progress_indicator.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextFormField extends StatelessWidget {
@@ -10,7 +12,7 @@ class CustomTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final String? Function(String?)? onSaved;
 
-  CustomTextFormField({
+  const CustomTextFormField({
     this.controller,
     this.labelText,
     this.prefixIcon,
@@ -24,20 +26,47 @@ class CustomTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      validator: validator,
-      obscureText: obscureText!,
-      keyboardType: keyboardType,
-      controller: controller,
-      onSaved: onSaved,
-      decoration: InputDecoration(
-        prefixIcon: Icon(prefixIcon),
-        labelText: labelText,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(5),
+    return Padding(
+      padding: const EdgeInsets.all(5.0),
+      child: TextFormField(
+        validator: validator,
+        obscureText: obscureText!,
+        keyboardType: keyboardType,
+        controller: controller,
+        onSaved: onSaved,
+        decoration: InputDecoration(
+          prefixIcon: Icon(prefixIcon),
+          labelText: labelText,
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(5),
+          ),
+          suffixIcon: suffixIcon,
         ),
-        suffixIcon: suffixIcon,
       ),
     );
   }
+}
+
+///Title Progress Indicator
+
+Widget titleProgressIndicator(BuildContext context, String? title) {
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.center,
+    children: [
+      Center(
+        child: Text(
+          title ?? "title",
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: Sizer(context).height * 0.030,
+            color: AppColors.primaryColor,
+          ),
+        ),
+      ),
+      SizedBox(height: 20),
+      Center(
+        child: CustomProgressIndicator(),
+      ),
+    ],
+  );
 }

@@ -10,7 +10,7 @@ class WhoCanDonateBloodModel {
   });
 }
 
-List<WhoCanDonateBloodModel> whoCanDonateList = [
+List<WhoCanDonateBloodModel> whoCanDonateModel = [
   WhoCanDonateBloodModel(
       iconData: Icons.person_outlined,
       title: "Individuals aged between 18 to 65 years"),
